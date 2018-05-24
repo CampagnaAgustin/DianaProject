@@ -1,0 +1,36 @@
+<!doctype html>
+<html layout:decorate="estructura">
+	<head>
+		<title>Registro Diana</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
+		<link rel="stylesheet" type="text/css" href="/css/generalStyle.css"></link>
+		<meta charset="UTF-8"></meta>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="/js/listado.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+				<div class="form-row text-center" layout:fragment="contenido">
+		   			 <div class="col-12">
+		   			 	<h1 class="text-center">Crear cuenta de Usuario<br>
+		   			 	<small class="text-muted">Por favor completa todos los campos</small></h1><br></br>
+		   			 	<form action="/bienvenido-usuario" method="post">
+		   			 	<a>Nombre</a><br>
+		   			 	<input type="text" name="nombre" placeholder="Insertar nombre..."></input><br><br>
+		   			 	<a>Email</a><br>
+						<input type="email" name="email" placeholder="Email@ejemplo.com..."></input><br></br>
+						<a>Contraseña</a><br>
+						<input type="password" name="password" placeholder="Insertar contraseña..."></input><br></br>
+		        		<button type="button" class="btn btn-light btn-sm">Atras</button>
+						<button type="submit" class="btn btn-primary">Registrar</button>
+						</form>
+		    		</div>
+		 		</div>
+	 		</div>
+
+	</body>
+	
+</html>

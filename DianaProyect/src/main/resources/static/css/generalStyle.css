@@ -1,0 +1,29 @@
+.tarjeta-usuario {
+	border: 2px solid black;
+	margin: 5px;
+	padding: 5px;
+}
+
+.seleccionada {
+	background-color: #b205dd61;
+}
+
+.tarjeta-usuario:hover {
+	background-color: #cfcece24;
+}
+
+.banner {
+	padding: 15px;
+	background-color: white;
+}
+
+#dianaLogo {
+	width: 150px;
+	height: 150px;
+	margin-left: 20px;
+}
+
+.background {
+	background-color: grey;
+	height: 1500px;
+}
