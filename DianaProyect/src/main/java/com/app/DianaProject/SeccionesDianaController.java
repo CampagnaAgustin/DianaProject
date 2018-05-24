@@ -1,4 +1,4 @@
-package com.app.DianaProyect;
+package com.app.DianaProject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

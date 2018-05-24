@@ -1,12 +1,12 @@
-package com.app.DianaProyect;
+package com.app.DianaProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DianaProyectApplication {
+public class DianaProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DianaProyectApplication.class, args);
+		SpringApplication.run(DianaProjectApplication.class, args);
 	}
 }

@@ -1,4 +1,4 @@
-package com.app.DianaProyect;
+package com.app.DianaProject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

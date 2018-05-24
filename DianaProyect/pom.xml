@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.app</groupId>
-	<artifactId>DianaProyect</artifactId>
+	<artifactId>DianaProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>DianaProyect</name>
+	<name>DianaProject</name>
 	<description>Aplicacion para difusion de artistas emergentes y cultura</description>
 
 	<parent>
