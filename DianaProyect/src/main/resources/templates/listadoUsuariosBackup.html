@@ -1,0 +1,38 @@
+<!doctype html>
+<html layout:decorate="estructura">
+	<head>
+		<title>Listado de Usuarios</title>
+		<link rel="stylesheet" type="text/css" href="/css/generalStyle.css"></link>
+		<meta charset="UTF-8"></meta>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="form-row text-center" layout:fragment="contenido">
+				<form action="/procesarBusqueda">
+					<input type="text" name="palabraBuscada"></input>
+					<input type="submit" value="Buscar"></input>
+				</form>
+			
+				<div class="tarjeta-usuario" th:each="usuario:${listadoUsuarios}">
+					<label>Nombre: </label><label th:href="'/detalle/' + ${usuario.id}"  th:text="${usuario.nombre}"></label><br>
+					<label>Email: </label><label th:text="${usuario.email}"></label><br>
+					<label>Contraseña: </label><label th:text="${usuario.contrasenia}"></label><br>
+					<label>Artista: </label><label th:text="${usuario.artista}"></label><br>
+					<label>Localidad: </label><label th:text="${usuario.localidad}"></label><br>
+					<label>Influencias: </label><label th:text="${usuario.influencias}"></label><br>
+					<label>Genero: </label><label th:text="${usuario.genero}"></label><br>
+					<label>Integrantes: </label><label th:text="${usuario.integrantes}"></label><br>
+					<label>Descripcion: </label><label th:text="${usuario.descripcion}"></label><br>
+					<label>Imagen: </label><img th:src="${usuario.imagen}"></img><br>
+					<label>Tipo: </label><label th:src="${usuario.tipo}"></label><br>
+					<a th:href="'/eliminar/' + ${usuario.id}">X</a>
+				</div>
+			</div>		
+		</div>
+	</body>
+
+</html>

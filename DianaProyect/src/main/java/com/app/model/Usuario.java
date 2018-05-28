@@ -14,8 +14,9 @@ public class Usuario {
 	private String integrantes;
 	private String descripcion;
 	private String imagen;
+	private String tipo;
 
-	public Usuario(int id, String nom, String e, String c, boolean a, String l, String inf, String g, String d, String in, String img){
+	public Usuario(int id, String nom, String e, String c, boolean a, String l, String inf, String g, String d, String in, String img, String t){
 		this.id = id;
 		this.nombre = nom;
 		this.email = e;
@@ -28,6 +29,7 @@ public class Usuario {
 		this.genero = g;
 		this.integrantes = in;
 		this.imagen = img;
+		this.tipo = t;
 	}
 	
 	@Override
@@ -120,6 +122,14 @@ public class Usuario {
 	
 	public void setImagen(String imagen){
 		this.imagen = imagen;
+	}
+	
+	public String getTipo(){
+		return this.tipo;
+	}
+	
+	public void setTipo(String tipo){
+		this.tipo = tipo;
 	}
 	
 }

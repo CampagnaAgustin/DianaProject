@@ -31,27 +31,21 @@ public class UsuariosDianaController {
 	// comando registro de artistas
 	@PostMapping("/bienvenido-artista")
 	public String bienvenidoArtista(@RequestParam String nombre, @RequestParam String email,
-			@RequestParam String password, @RequestParam String localidad, @RequestParam String influencias,
-			@RequestParam String descripcion, @RequestParam String genero, @RequestParam String integrantes)
+			@RequestParam String password)
 			throws SQLException {
 		Connection connection;
 		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 		PreparedStatement consulta = connection.prepareStatement(
-				"INSERT INTO usuarios(nombre, email, contrasenia, artista, localidad, influencias, genero, integrantes, descripcion) VALUES(?, ?, ?, true, ?, ?, ?, ?, ?);");
+				"INSERT INTO usuarios(nombre, email, contrasenia, artista) VALUES(?, ?, ?, true);");
 		consulta.setString(1, nombre);
 		consulta.setString(2, email);
 		consulta.setString(3, password);
-		consulta.setString(4, localidad);
-		consulta.setString(5, influencias);
-		consulta.setString(6, genero);
-		consulta.setString(7, integrantes);
-		consulta.setString(8, descripcion);
 
 		consulta.executeUpdate();
 
 		connection.close();
-		return "Registro";
+		return "redirect:/";
 	}
 	
 	@PostMapping("/bienvenido-usuario")
@@ -70,7 +64,7 @@ public class UsuariosDianaController {
 		consulta.executeUpdate();
 
 		connection.close();
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	
 	// muestra un usuario en detalle
@@ -98,6 +92,7 @@ public class UsuariosDianaController {
 			String genero = resultado.getString("genero");
 			String integrantes = resultado.getString("integrantes");
 			String imagen = resultado.getString("imagen");
+			String tipo = resultado.getString("tipo");
 			
 			template.addAttribute("nombre", nombre);
 			template.addAttribute("email", email);
@@ -109,6 +104,7 @@ public class UsuariosDianaController {
 			template.addAttribute("genero", genero);
 			template.addAttribute("integrantes", integrantes);
 			template.addAttribute("imagen", imagen);
+			template.addAttribute("tipo", tipo);
 		}
 		
 		return "detalleUsuario";
@@ -119,7 +115,7 @@ public class UsuariosDianaController {
 			throws SQLException {
 		boolean sePudo = UsuariosDianaHelper.intentarLoguearse(session, nombre, password);
 		if (sePudo) {
-			return "redirect:/listado";
+			return "redirect:/";
 		} else {
 			// TODO: precargar los datos que lleno, salvo la contraseña
 			return "login";
@@ -132,20 +128,18 @@ public class UsuariosDianaController {
 		return "redirect:/login";
 	}
 	
-	/* Codigo incompleto para editar Usuarios
 	@GetMapping("/editar/{id}")
-	public String editar(@PathVariable int id, @RequestParam String nombre) throws SQLException {
-		
+	public String editar(Model template, @PathVariable int id) throws SQLException {
+
 		Connection connection;
-		connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Diana","postgres","01100110f");
-		
-		PreparedStatement consulta = 
-				connection.prepareStatement("UPDATE usuarios SET nombre = ?, email = ?, contrasenia = ?, localidad = ?, influencias = ?, descripcion = ?, genero = ?, integrantes = ?, WHERE id = ?;");
-		
+		connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Diana", "postgres", "01100110f");
+
+		PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE id = ?;");
+
 		consulta.setInt(1, id);
 
 		ResultSet resultado = consulta.executeQuery();
-		
+
 		if ( resultado.next() ) {
 			String nombre = resultado.getString("nombre");
 			String email = resultado.getString("email");
@@ -156,6 +150,8 @@ public class UsuariosDianaController {
 			String descripcion = resultado.getString("descripcion");
 			String genero = resultado.getString("genero");
 			String integrantes = resultado.getString("integrantes");
+			String imagen = resultado.getString("imagen");
+			String tipo = resultado.getString("tipo");
 			
 			template.addAttribute("nombre", nombre);
 			template.addAttribute("email", email);
@@ -166,20 +162,86 @@ public class UsuariosDianaController {
 			template.addAttribute("descripcion", descripcion);
 			template.addAttribute("genero", genero);
 			template.addAttribute("integrantes", integrantes);
+			template.addAttribute("imagen", imagen);
+			template.addAttribute("tipo", tipo);
+		}
+
+		return "editarUsuario";
+	}
+	
+	//Editar usuarios
+	@GetMapping("/modificar/{id}")
+	public String modificar(Model template, @PathVariable int id, @RequestParam String nombre, @RequestParam String email, @RequestParam String password, @RequestParam String localidad, @RequestParam String influencias, @RequestParam String descripcion, @RequestParam String genero, @RequestParam String integrantes) throws SQLException {
+		
+		Connection connection;
+		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
+		
+		PreparedStatement consulta = 
+				connection.prepareStatement("UPDATE usuarios SET nombre = ?, email = ?, contrasenia = ?, localidad = ?, influencias = ?, descripcion = ?, genero = ?, integrantes = ? WHERE id = ?;");
+		
+		consulta.setString(1, nombre);
+		consulta.setString(2, email);
+		consulta.setString(3, password);
+		consulta.setString(4, localidad);
+		consulta.setString(5, influencias);
+		consulta.setString(6, descripcion);
+		consulta.setString(7, genero);
+		consulta.setString(8, integrantes);
+		consulta.setInt(9, id);
+
+		consulta.executeUpdate();
+
+		connection.close();
+		
+		return "redirect:/detalle/{id}";
+	}
+		
+	@GetMapping("/artistas/todes")
+	public String listadoTodes(Model template) throws SQLException {
+		
+		Connection connection;
+		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
+		
+		PreparedStatement consulta = 
+				connection.prepareStatement("SELECT * FROM usuarios WHERE artista = true;");
+		
+		ResultSet resultado = consulta.executeQuery();
+		
+		ArrayList<Usuario> listadoUsuarios = new ArrayList<Usuario>();
+		
+		while ( resultado.next() ) {
+			int id = resultado.getInt("id");
+			String nombre = resultado.getString("nombre");
+			String email = resultado.getString("email");
+			String password = resultado.getString("contrasenia");
+			boolean artista = resultado.getBoolean("artista");
+			String localidad = resultado.getString("localidad");
+			String influencias = resultado.getString("influencias");
+			String genero = resultado.getString("genero");
+			String integrantes = resultado.getString("integrantes");
+			String descripcion = resultado.getString("descripcion");
+			String imagen = resultado.getString("imagen");
+			String tipo = resultado.getString("tipo");
+			
+			Usuario x = new Usuario(id, nombre, email, password, artista, localidad, influencias, genero, descripcion, integrantes, imagen, tipo);
+			listadoUsuarios.add(x);
 		}
 		
-		return "editarUsuario";
-	} */
+		template.addAttribute("listadoUsuarios", listadoUsuarios);
+		
+		return "listadoUsuarios";
+	}
 	
-	// muestra el listado completo de usuarios
-		@GetMapping("/listado")
-		public String listado(Model template) throws SQLException {
+		@GetMapping("/artistas/{tipo}")
+		public String listadoTipo(Model template, @PathVariable String tipo) throws SQLException {
 			
 			Connection connection;
 			connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 			
 			PreparedStatement consulta = 
-					connection.prepareStatement("SELECT * FROM usuarios;");
+					connection.prepareStatement("SELECT * FROM usuarios WHERE artista = true AND tipo = ?;");
+			
+			consulta.setString(1, tipo);
 			
 			ResultSet resultado = consulta.executeQuery();
 			
@@ -197,8 +259,9 @@ public class UsuariosDianaController {
 				String integrantes = resultado.getString("integrantes");
 				String descripcion = resultado.getString("descripcion");
 				String imagen = resultado.getString("imagen");
+				tipo = resultado.getString("tipo");
 				
-				Usuario x = new Usuario(id, nombre, email, password, artista, localidad, influencias, genero, descripcion, integrantes, imagen);
+				Usuario x = new Usuario(id, nombre, email, password, artista, localidad, influencias, genero, descripcion, integrantes, imagen, tipo);
 				listadoUsuarios.add(x);
 			}
 			
@@ -234,8 +297,9 @@ public class UsuariosDianaController {
 				String integrantes = resultado.getString("integrantes");
 				String descripcion = resultado.getString("descripcion");
 				String imagen = resultado.getString("imagen");
+				String tipo = resultado.getString("tipo");
 
-				Usuario x = new Usuario(id, nombre, email, contrasenia, artista, localidad, influencias, genero, integrantes, descripcion, imagen);
+				Usuario x = new Usuario(id, nombre, email, contrasenia, artista, localidad, influencias, genero, integrantes, descripcion, imagen, tipo);
 				listadoUsuarios.add(x);
 			}
 

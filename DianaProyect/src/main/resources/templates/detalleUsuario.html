@@ -1,28 +1,28 @@
 <!doctype html>
-<html>
+<html layout:decorate="estructura">
 	<head>
-		<title>Detalle Usuario</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></link>
-		<link rel="stylesheet" type="text/css" href="/css/generalStyle.css"></link>
+		<title th:text="${nombre}"></title>
 		<meta charset="UTF-8"></meta>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		<script src="/js/listado.js"></script>
 	</head>
 
 	<body>
-		<div class="tarjeta-usuario">
-			<label>Nombre: </label><label th:text="${nombre}"></label><br>
-			<label>Email: </label><label th:text="${email}"></label><br>
-			<label>Contraseña: </label><label th:text="${password}"></label><br>
-			<label>Artista: </label><label th:text="${artista}"></label><br>
-			<label>Localidad: </label><label th:text="${localidad}"></label><br>
-			<label>Influencias: </label><label th:text="${influencias}"></label><br>
-			<label>Genero: </label><label th:text="${genero}"></label><br>
-			<label>Integrantes: </label><label th:text="${integrantes}"></label><br>
-			<label>Descripcion: </label><label th:text="${descripcion}"></label><br>
-			<label>Imagen: </label><img th:src="${imagen}"></img><br>
+		<div class="container">
+			<div class="form-row text-center" layout:fragment="contenido">
+				<div class="col-12">
+					<div class="tarjeta-usuario">
+						<label>Nombre: </label><label th:text="${nombre}"></label><br>
+						<label>Email: </label><label th:text="${email}"></label><br>
+						<label>Contraseña: </label><label th:text="${password}"></label><br>
+						<label>Artista: </label><label th:text="${artista}"></label><br>
+						<label>Localidad: </label><label th:text="${localidad}"></label><br>
+						<label>Influencias: </label><label th:text="${influencias}"></label><br>
+						<label>Genero: </label><label th:text="${genero}"></label><br>
+						<label>Integrantes: </label><label th:text="${integrantes}"></label><br>
+						<label>Descripcion: </label><label th:text="${descripcion}"></label><br>
+						<label>Imagen: </label><img th:src="${imagen}"></img><br>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 

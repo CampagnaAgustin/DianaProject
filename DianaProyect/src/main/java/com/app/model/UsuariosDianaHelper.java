@@ -58,7 +58,7 @@ public class UsuariosDianaHelper {
 
 			if (resultado.next()) {
 				Usuario logueado = new Usuario(resultado.getInt("id"), resultado.getString("nombre"), resultado.getString("email"), 
-						resultado.getString("contrasenia"), resultado.getBoolean("artista"), resultado.getString("localidad"), resultado.getString("influencias"), resultado.getString("genero"), resultado.getString("integrantes"), resultado.getString("descripcion"), resultado.getString("imagen") );
+						resultado.getString("contrasenia"), resultado.getBoolean("artista"), resultado.getString("localidad"), resultado.getString("influencias"), resultado.getString("genero"), resultado.getString("integrantes"), resultado.getString("descripcion"), resultado.getString("imagen"), resultado.getString("tipo") );
 				return logueado;
 			} else {
 				return null;

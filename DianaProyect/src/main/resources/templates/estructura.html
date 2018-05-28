@@ -8,14 +8,15 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
-		<script src="/js/listado.js"></script>
 	</head>
 	
 	<body>
 		<!--  Banner -->
 		<div class="fluid-container">
-			<div class="row banner">
-				<img id="dianaLogo" src="/images/DianaLogo.jpg"></img>
+			<div class="row">
+				<div class="col-12 banner">
+					<a href="/home" ><img id="dianaLogo" src="/images/DianaLogo.jpg"></img></a>
+				</div>
 			</div>
 		</div>
 	
@@ -25,19 +26,21 @@
 			<!-- Links -->
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="/listado" id="navbardrop" data-toggle="dropdown">Artistas</a>
+					<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">Artistas</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Musicales</a>
-						<a class="dropdown-item" href="#">Teatrales</a>
-						<a class="dropdown-item" href="#">Literarios</a>
-						<a class="dropdown-item" href="#">Graficos</a>
+						<a class="dropdown-item" href="/artistas/todes">Todos</a>
+						<a class="dropdown-item" href="/artistas/musicales">Musicales</a>
+						<a class="dropdown-item" href="/artistas/teatrales">Teatrales</a>
+						<a class="dropdown-item" href="/artistas/literarios">Literarios</a>
+						<a class="dropdown-item" href="/artistas/graficos">Graficos</a>
+						<a class="dropdown-item" href="/artistas/multidisciplinarios">Multidisciplinarios</a>
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Centros culturales</a>
+					<a class="nav-link" href="/centros-culturales">Centros culturales</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Nosotres</a>
+					<a class="nav-link" href="/nosotres">Nosotres</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav">
@@ -48,12 +51,19 @@
 		
 		<!-- Page Content -->
 		
-		<div class="fluid-container backgound" layout:fragment="contenido">
-			<div class="row">
+		<div class="container backgound">
+			<div class="row" layout:fragment="contenido">
 				<div class="col-12 background">
 				</div>
 			</div>
 		</div>
+		
+		<!-- Footer -->
+		<footer class="py-5 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">Escribir giladas aca</p>
+			</div>
+		</footer>
 		
 		
 	</body>

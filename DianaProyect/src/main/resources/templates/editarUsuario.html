@@ -1,0 +1,36 @@
+<!doctype html>
+<html layout:decorate="estructura">
+<head>
+<title>Detalle Usuario</title>
+<link rel="stylesheet" type="text/css" href="/css/estilos.css"></link>
+<meta charset="UTF-8"></meta>
+</head>
+
+<body>
+	<div class="container" layout:fragment="contenido">
+		<div class="tarjeta-usuario">
+			<form th:action="'/modificar/' + ${id}">
+				<label>Nombre: </label><input class="form-control" name="nombre" type="text" th:value="${nombre}"></input><br>
+				<label>Email: </label><input class="form-control" name="email" type="email" th:value="${email}"></input><br>
+				<label>Contraseña: </label><input class="form-control" name="password" type="text" th:value="${password}"></input><br>
+				<label>Localidad: </label><input class="form-control" name="localidad" type="text" th:value="${localidad}"></input><br>
+				<label>Influencias: </label><input class="form-control" name="influencias" type="text" th:value="${influencias}"></input><br>
+				<label>Descripcion: </label><textarea class="form-control" id="exampleTextarea" name="descripcion" rows="3" th:value="${descripcion}"></textarea><br>
+				<label>Genero: </label><input class="form-control" name="genero" type="text" th:value="${genero}"></input><br>
+				<label>Integrantes: </label><input class="form-control" name="integrantes" type="text" th:value="${integrantes}"></input><br>
+				<label>Imagen: </label><img th:src="${imagen}"></img><br><input type="file" class="form-control-file border" name="imagen" th:value=${imagen}></input>
+				<label for="sel1">Elegir tipo:</label>
+				  <select class="form-control" id="tipo">
+				    <option>Musicales</option>
+				    <option>Teatrales</option>
+				    <option>Literarios</option>
+				    <option>Graficos</option>
+				    <option>Interdisciplinarios</option>
+				  </select>
+				<input type="submit"></input>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
