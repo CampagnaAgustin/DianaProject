@@ -26,9 +26,9 @@
 			<!-- Links -->
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">Artistas</a>
+					<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" th:classappend="${artistasActive}">Artistas</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/artistas/todes">Todos</a>
+						<a class="dropdown-item" href="/artistas/todes">Todes</a>
 						<a class="dropdown-item" href="/artistas/musicales">Musicales</a>
 						<a class="dropdown-item" href="/artistas/teatrales">Teatrales</a>
 						<a class="dropdown-item" href="/artistas/literarios">Literarios</a>
@@ -37,23 +37,25 @@
 					</div>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/centros-culturales">Centros culturales</a>
+					<a class="nav-link" href="/centros-culturales" th:classappend="${culturalesActive}">Centros culturales</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/nosotres">Nosotres</a>
+					<a class="nav-link" href="/nosotres" th:classappend="${nosotresActive}">Nosotres</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-				<li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
+				<li class="nav-item"><a class="nav-link" href="/login" th:classappend="${loginActive}">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="/registro" th:classappend="${registroActive}">Registrarse</a></li>
 			</ul>
 		</nav>
 		
 		<!-- Page Content -->
 		
-		<div class="container backgound">
-			<div class="row" layout:fragment="contenido">
+		<div class="fluid-container backgound">
+			<div class="row">
 				<div class="col-12 background">
+					<div layout:fragment="contenido">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -61,7 +63,7 @@
 		<!-- Footer -->
 		<footer class="py-5 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Escribir giladas aca</p>
+				<p class="m-0 text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 			</div>
 		</footer>
 		

@@ -67,49 +67,6 @@ public class UsuariosDianaController {
 		return "redirect:/";
 	}
 	
-	// muestra un usuario en detalle
-	@GetMapping("/detalle/{id}")
-	public String detalle(Model template, @PathVariable int id) throws SQLException {
-		
-		Connection connection;
-		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
-		
-		PreparedStatement consulta = 
-				connection.prepareStatement("SELECT * FROM usuarios WHERE id = ?;");
-		
-		consulta.setInt(1, id);
-
-		ResultSet resultado = consulta.executeQuery();
-		
-		if ( resultado.next() ) {
-			String nombre = resultado.getString("nombre");
-			String email = resultado.getString("email");
-			String password = resultado.getString("contrasenia");
-			boolean artista = resultado.getBoolean("artista");
-			String localidad = resultado.getString("localidad");
-			String influencias = resultado.getString("influencias");
-			String descripcion = resultado.getString("descripcion");
-			String genero = resultado.getString("genero");
-			String integrantes = resultado.getString("integrantes");
-			String imagen = resultado.getString("imagen");
-			String tipo = resultado.getString("tipo");
-			
-			template.addAttribute("nombre", nombre);
-			template.addAttribute("email", email);
-			template.addAttribute("password", password);
-			template.addAttribute("artista", artista);
-			template.addAttribute("localidad", localidad);
-			template.addAttribute("influencias", influencias);
-			template.addAttribute("descripcion", descripcion);
-			template.addAttribute("genero", genero);
-			template.addAttribute("integrantes", integrantes);
-			template.addAttribute("imagen", imagen);
-			template.addAttribute("tipo", tipo);
-		}
-		
-		return "detalleUsuario";
-	}
-	
 	@PostMapping("/procesar-login")
 	public String processLogin(HttpSession session, @RequestParam String nombre, @RequestParam String password)
 			throws SQLException {
@@ -127,6 +84,49 @@ public class UsuariosDianaController {
 		UsuariosDianaHelper.cerrarSesion(session);
 		return "redirect:/login";
 	}
+	
+	// muestra un usuario en detalle
+		@GetMapping("/detalle/{id}")
+		public String detalle(Model template, @PathVariable int id) throws SQLException {
+			
+			Connection connection;
+			connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
+			
+			PreparedStatement consulta = 
+					connection.prepareStatement("SELECT * FROM usuarios WHERE id = ?;");
+			
+			consulta.setInt(1, id);
+
+			ResultSet resultado = consulta.executeQuery();
+			
+			if ( resultado.next() ) {
+				String nombre = resultado.getString("nombre");
+				String email = resultado.getString("email");
+				String password = resultado.getString("contrasenia");
+				boolean artista = resultado.getBoolean("artista");
+				String localidad = resultado.getString("localidad");
+				String influencias = resultado.getString("influencias");
+				String descripcion = resultado.getString("descripcion");
+				String genero = resultado.getString("genero");
+				String integrantes = resultado.getString("integrantes");
+				String imagen = resultado.getString("imagen");
+				String tipo = resultado.getString("tipo");
+				
+				template.addAttribute("nombre", nombre);
+				template.addAttribute("email", email);
+				template.addAttribute("password", password);
+				template.addAttribute("artista", artista);
+				template.addAttribute("localidad", localidad);
+				template.addAttribute("influencias", influencias);
+				template.addAttribute("descripcion", descripcion);
+				template.addAttribute("genero", genero);
+				template.addAttribute("integrantes", integrantes);
+				template.addAttribute("imagen", imagen);
+				template.addAttribute("tipo", tipo);
+			}
+			
+			return "detalleUsuario";
+		}
 	
 	@GetMapping("/editar/{id}")
 	public String editar(Model template, @PathVariable int id) throws SQLException {
@@ -228,6 +228,7 @@ public class UsuariosDianaController {
 		}
 		
 		template.addAttribute("listadoUsuarios", listadoUsuarios);
+		template.addAttribute("artistasActive", "active");
 		
 		return "listadoUsuarios";
 	}
@@ -266,6 +267,7 @@ public class UsuariosDianaController {
 			}
 			
 			template.addAttribute("listadoUsuarios", listadoUsuarios);
+			template.addAttribute("artistasActive", "active");
 			
 			return "listadoUsuarios";
 		}

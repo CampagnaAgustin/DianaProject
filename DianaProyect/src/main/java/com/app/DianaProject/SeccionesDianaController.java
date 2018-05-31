@@ -1,6 +1,7 @@
 package com.app.DianaProject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -8,7 +9,7 @@ public class SeccionesDianaController {
 	
 	@GetMapping("/home")
 	public String inicioHome() {
-		return "estructura";
+		return "inicio";
 	}
 	
 	@GetMapping("/")
@@ -16,61 +17,40 @@ public class SeccionesDianaController {
 		return "redirect:/home";
 	}
 	
-	/*
-	@GetMapping("/artistas-musicales")
-	public String musicales () {
-		return "musicales";
-	}
-	
-	@GetMapping("/artistas-teatrales")
-	public String teatrales () {
-		return "teatrales";
-	}
-	
-	@GetMapping("/artistas-literarios")
-	public String literarios () {
-		return "literarios";
-	}
-	
-	@GetMapping("/artistas-graficos")
-	public String graficos () {
-		return "graficos";
-	}
-	
-	@GetMapping("/artistas-interdisciplinarios")
-	public String interdisciplinarios () {
-		return "interdisciplinarios";
-	}
-	*/
-	
 	@GetMapping("/centros-culturales")
-	public String centrosCulturales () {
+	public String centrosCulturales (Model template) {
+		template.addAttribute("culturalesActive", "active");
 		return "culturales";
 	}
 	
 	@GetMapping("/nosotres")
-	public String nosotres () {
+	public String nosotres (Model template) {
+		template.addAttribute("nosotresActive", "active");
 		return "nosotres";
 	}
 
 	// inicio registro, eleccion entre Artista o Usuario
 	@GetMapping("/registro")
-	public String registrar() {
+	public String registrar(Model template) {
+		template.addAttribute("registroActive", "active");
 		return "registro";
 	}
 
 	@GetMapping("/registro-artista")
-	public String registrarArtista() {
+	public String registrarArtista(Model template) {
+		template.addAttribute("registroActive", "active");
 		return "registroArtista";
 	}
 	
 	@GetMapping("/registro-usuario")
-	public String registrarUsuario() {
+	public String registrarUsuario(Model template) {
+		template.addAttribute("registroActive", "active");
 		return "registroUsuario";
 	}
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(Model template) {
+		template.addAttribute("loginActive", "active");
 		return "login";
 	}
 	
