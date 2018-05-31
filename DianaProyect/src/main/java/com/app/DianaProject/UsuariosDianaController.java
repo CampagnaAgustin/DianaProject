@@ -28,6 +28,9 @@ public class UsuariosDianaController {
 	@Autowired
 	private Environment env;
 	
+	@Autowired
+	private UsuariosDianaHelper UsuariosDianaHelper;
+	
 	// comando registro de artistas
 	@PostMapping("/bienvenido-artista")
 	public String bienvenidoArtista(@RequestParam String nombre, @RequestParam String email,

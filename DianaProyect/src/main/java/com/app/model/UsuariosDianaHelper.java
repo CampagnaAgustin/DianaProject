@@ -9,12 +9,20 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
+
+@Service
 public class UsuariosDianaHelper {
 
-	public static boolean intentarLoguearse(HttpSession session, String nombre, String password) throws SQLException {
+	@Autowired
+	Environment env;
+	
+	public boolean intentarLoguearse(HttpSession session, String nombre, String password) throws SQLException {
 
 		Connection connection;
-		connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Diana", "postgres", "01100110f");
+		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 		PreparedStatement consulta = connection
 				.prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND contrasenia = ?;");
@@ -41,14 +49,14 @@ public class UsuariosDianaHelper {
 
 	}
 
-	public static Usuario usuarioLogueado(HttpSession session) throws SQLException {
+	public Usuario usuarioLogueado(HttpSession session) throws SQLException {
 
 		String codigo = (String) session.getAttribute("codigo-autorizacion");
 
 		if (codigo != null) {
 
 			Connection connection;
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Diana", "postgres", "01100110f");
+			connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 			PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE codigo = ?;");
 
@@ -69,14 +77,14 @@ public class UsuariosDianaHelper {
 		}
 	}
 
-	public static void cerrarSesion(HttpSession session) throws SQLException {
+	public void cerrarSesion(HttpSession session) throws SQLException {
 
 		String codigo = (String) session.getAttribute("codigo-autorizacion");
 
 		session.removeAttribute("codigo-autorizacion");
 
 		Connection connection;
-		connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Diana", "postgres", "01100110f");
+		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 		PreparedStatement consulta = connection.prepareStatement("UPDATE usuarios Set codigo = null WHERE codigo = ?;");
 
