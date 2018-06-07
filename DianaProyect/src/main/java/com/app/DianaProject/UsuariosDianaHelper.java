@@ -1,4 +1,4 @@
-package com.app.model;
+package com.app.DianaProject;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.app.model.Usuario;
 
 @Service
 public class UsuariosDianaHelper {
@@ -93,5 +96,28 @@ public class UsuariosDianaHelper {
 		connection.close();
 
 	}
-
+	
+	public void isLoggedIn(HttpSession session, Model template) throws SQLException {
+		Usuario logueado = this.usuarioLogueado(session);
+		if (logueado != null) {
+			template.addAttribute("isLoggedIn", true);
+		} else {
+			template.addAttribute("isLoggedIn", false);
+		}
+	}
+	
+	public void datosLogueado(HttpSession session, Model template) throws SQLException {
+			
+			Usuario logueado = this.usuarioLogueado(session);
+			
+			if (logueado != null) {
+			
+			String nombreUsuario = logueado.getNombre();
+			int idUsuario = logueado.getId();
+			
+			template.addAttribute("nombreUsuario" , nombreUsuario);
+			template.addAttribute("idUsuario" , idUsuario);
+			
+			}
+		}
 }

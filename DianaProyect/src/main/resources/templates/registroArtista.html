@@ -6,9 +6,9 @@
 	</head>
 
 	<body>
-		<div class="container">
-				<div class="form-row text-center" layout:fragment="contenido">
-		   			 <div class="col-8">
+		<div class="container" layout:fragment="contenido">
+			<div class="form-row text-center">
+		   		<div class="fondoSecciones col-12">
 		   			 	<h1 class="text-center">Crear cuenta de Artista<br>
 		   			 	<small class="text-muted">Por favor completa todos los campos</small></h1><br></br>
 		   			 	<form action="/bienvenido-artista" method="post">
@@ -18,6 +18,14 @@
 						<input type="email" name="email" placeholder="Email@ejemplo.com..."></input><br></br>
 						<a>Contraseña</a><br>
 						<input type="password" name="password" placeholder="Insertar contraseña..."></input><br></br>
+						<label for="tipo">Elegir tipo:</label>
+						<select name="tipo" class="form-control" id="tipo">
+							<option value="musicales">Musicales</option>
+							<option value="teatrales">Teatrales</option>
+							<option value="literarios">Literarios</option>
+							<option value="graficos">Graficos</option>
+							<option value="interdisciplinarios">Interdisciplinarios</option>
+						</select>
 		        		<button type="button" class="btn btn-light btn-sm">Atras</button>
 						<button type="submit" class="btn btn-primary">Registrar</button>
 						</form>

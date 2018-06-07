@@ -25,5 +25,9 @@
 
 .background {
 	background-color: grey;
-	height: 1500px;
+}
+
+.fondoSecciones {
+	background-color: whitesmoke;
+	padding: 40px;
 }

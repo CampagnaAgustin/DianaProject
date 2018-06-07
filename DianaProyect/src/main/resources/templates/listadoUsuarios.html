@@ -3,21 +3,32 @@
 	<head>
 		<title>Artistas</title>
 		<meta charset="UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="/css/listado.css"></link>
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="form-row text-center" layout:fragment="contenido">
+		<div class="fondoSecciones container" layout:fragment="contenido">
+			<div class="form-row text-center">
 				<form action="/procesarBusqueda">
 					<input type="text" name="palabraBuscada"></input>
 					<input type="submit" value="Buscar"></input>
 				</form>
+			</div>
 			
-				<div class="tarjeta-usuario" th:each="usuario:${listadoUsuarios}">
-					<a th:href="'/detalle/' + ${usuario.id}"><label th:href="'/detalle/' + ${usuario.id}"  th:text="${usuario.nombre}"></label></a><br>
-					<a th:href="'/detalle/' + ${usuario.id}"><img th:src="${usuario.imagen}"></img></a><br>
+			<div class="row text-center">
+        		<div class="col-lg-12">
+          			<h2 th:text="'Artistas ' + ${tipo}" class="my-4">Our Team</h2>
+       			</div>
+       		</div>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6 text-center mb-4" th:each="usuario:${listadoUsuarios}">
+          			<a th:href="'/detalle/' + ${usuario.id}"><img id="imagenListado" class="rounded-circle img-fluid d-block mx-auto" th:src="${usuario.imagen}" alt=""></a>
+          			<h3 th:text="${usuario.nombre}">
+            		<small>Job Title</small>
+          			</h3>
+          			<p>Links pag artista</p>
 				</div>
-			</div>		
+			</div>	
 		</div>
 	</body>
 

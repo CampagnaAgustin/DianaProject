@@ -3,26 +3,70 @@
 	<head>
 		<title th:text="${nombre}"></title>
 		<meta charset="UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="/css/perfil.css"></link>
 	</head>
 
 	<body>
-		<div class="container">
-			<div class="form-row text-center" layout:fragment="contenido">
-				<div class="col-12">
-					<div class="tarjeta-usuario">
-						<label>Nombre: </label><label th:text="${nombre}"></label><br>
-						<label>Email: </label><label th:text="${email}"></label><br>
-						<label>Contraseña: </label><label th:text="${password}"></label><br>
-						<label>Artista: </label><label th:text="${artista}"></label><br>
-						<label>Localidad: </label><label th:text="${localidad}"></label><br>
-						<label>Influencias: </label><label th:text="${influencias}"></label><br>
-						<label>Genero: </label><label th:text="${genero}"></label><br>
-						<label>Integrantes: </label><label th:text="${integrantes}"></label><br>
-						<label>Descripcion: </label><label th:text="${descripcion}"></label><br>
-						<label>Imagen: </label><img th:src="${imagen}"></img><br>
+		<div class="cantainer" layout:fragment="contenido">
+			<div class="form-row text-center">
+				<div class="col-1">
+				</div>
+				<div class="col-5">
+					<div class="card">
+						<h1 th:text="${nombre}"></h1>
+						<img class="mx-auto d-block" id="fotoPerfil" th:src="${imagen}"></img>
+						<label th:text="'Email: ' + ${email}"></label><br>
+						<label th:text="'localidad: ' + ${localidad}"></label><br>
+						<label th:text="'influencias: ' + ${influencias}"></label><br>
+						<label th:text="'Estilo: ' + ${genero}"></label><br>
+						<label th:text="'Integrantes: ' + ${integrantes}"></label><br>
+						<label th:text="'Descripcion: ' + ${descripcion}"></label><br>
+						<label th:if="${isLoggedIn}"><a th:href="'/editar/' + ${idUsuario}">Editar</a></label>
 					</div>
+				<div class="col-4">
+				</div>
+				<div class="col-2">
+				</div>
 				</div>
 			</div>
+			<div class="container">
+			<div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-12">
+
+          <h1 class="my-4">Page Heading
+            <small>Secondary Text</small>
+          </h1>
+
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <div class="card-body">
+              <h2 class="card-title">Post Title</h2>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+              <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on January 1, 2017 by
+              <a href="#">Start Bootstrap</a>
+            </div>
+          </div>
+
+
+          <!-- Pagination -->
+          <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+              <a class="page-link" href="#">&larr; Older</a>
+            </li>
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Newer &rarr;</a>
+            </li>
+          </ul>
+
+        </div>
+        </div>
+        </div>
 		</div>
 	</body>
 

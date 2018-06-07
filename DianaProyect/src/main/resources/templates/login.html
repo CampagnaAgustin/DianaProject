@@ -6,22 +6,22 @@
 	</head>
 
 	<body>
-		<div class="container">
-				<div class="form-row text-center" layout:fragment="contenido">
-		   			 <div class="col-12">
-		   			 	<h1 class="text-center">Bienvenido a Diana<br>
-		   			 	<small class="text-muted">Completa los campos para iniciar sesion</small></h1><br></br>
-		   			 	<form action="/procesar-login" method="post">
-		   			 	<a>Nombre</a><br>
-		   			 	<input type="text" name="nombre" placeholder="Nombre..."></input><br><br>
-						<a>Contraseña</a><br>
-						<input type="password" name="password" placeholder="Contraseña..."></input><br></br>
-		        		<button type="button" class="btn btn-light btn-sm">Atras</button>
-						<button type="submit" class="btn btn-primary">Registrar</button>
-						</form>
-		    		</div>
-		 		</div>
-	 		</div>
+		<div class="container" layout:fragment="contenido">
+			<div class="form-row text-center">
+		   		 <div class="col-12 fondoSecciones">
+		   		 	<h1 class="text-center">Bienvenido a Diana<br>
+		   		 	<small class="text-muted">Completa los campos para iniciar sesion</small></h1><br></br>
+	  			 	<form action="/procesar-login" method="post">
+	 			 	<a>Nombre</a><br>
+		   		 	<input type="text" name="nombre" placeholder="Nombre..."></input><br><br>
+					<a>Contraseña</a><br>
+					<input type="password" name="password" placeholder="Contraseña..."></input><br></br>
+		        	<button type="button" class="btn btn-light btn-sm">Atras</button>
+					<button type="submit" class="btn btn-primary">Registrar</button>
+					</form>
+		    	</div>
+		 	</div>
+		</div>
 
 	</body>
 	

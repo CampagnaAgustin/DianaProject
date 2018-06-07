@@ -2,7 +2,9 @@
 <html layout:decorate="estructura">
 <head>
 <title>Detalle Usuario</title>
-<link rel="stylesheet" type="text/css" href="/css/estilos.css"></link>
+<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+<script src="/js/cloudinary.js"></script> 
 <meta charset="UTF-8"></meta>
 </head>
 
@@ -18,15 +20,17 @@
 				<label>Descripcion: </label><textarea class="form-control" id="exampleTextarea" name="descripcion" rows="3" th:value="${descripcion}"></textarea><br>
 				<label>Genero: </label><input class="form-control" name="genero" type="text" th:value="${genero}"></input><br>
 				<label>Integrantes: </label><input class="form-control" name="integrantes" type="text" th:value="${integrantes}"></input><br>
-				<label>Imagen: </label><img th:src="${imagen}"></img><br><input type="file" class="form-control-file border" name="imagen" th:value=${imagen}></input>
+				<label>Imagen: </label><img th:src="${imagen}"></img><br>
+				<a href="#" id="upload_widget_opener">Cargá tus fotos</a><br>
+				<input id="foto" class="form-control" name="imagen" type="text" th:value="${imagen}"></input><br>
 				<label for="sel1">Elegir tipo:</label>
-				  <select class="form-control" id="tipo">
-				    <option>Musicales</option>
-				    <option>Teatrales</option>
-				    <option>Literarios</option>
-				    <option>Graficos</option>
-				    <option>Interdisciplinarios</option>
-				  </select>
+					<select class="form-control" id="tipo">
+						<option>Musicales</option>
+						<option>Teatrales</option>
+						<option>Literarios</option>
+						<option>Graficos</option>
+						<option>Interdisciplinarios</option>
+					</select>
 				<input type="submit"></input>
 			</form>
 		</div>
