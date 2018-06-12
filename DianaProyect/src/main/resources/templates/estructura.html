@@ -45,7 +45,7 @@
 				<li class="nav-item" th:if="${not isLoggedIn}"><a class="nav-link" href="/login" th:classappend="${loginActive}">Login</a></li>
 				<li class="nav-item" th:if="${isLoggedIn}"><a class="nav-link" href="/logout" th:classappend="${loginActive}">Logout</a></li>
 				<li class="nav-item" th:if="${not isLoggedIn}"><a class="nav-link" href="/registro" th:classappend="${registroActive}">Registrarse</a></li>
-				<li class="nav-item" th:if="${isLoggedIn}"><a class="nav-link" th:text="${nombreUsuario}" th:href="'detalle/'+ ${idUsuario}" th:classappend="${registroActive}">Perfil</a></li>
+				<li class="nav-item" th:if="${isLoggedIn}"><a class="nav-link" th:text="${nombreUsuario}" th:href="'/detalle/'+ ${idUsuario}" th:classappend="${registroActive}">Perfil</a></li>
 			</ul>
 		</nav>
 		

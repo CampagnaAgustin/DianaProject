@@ -21,11 +21,12 @@ public class UsuariosDianaHelper {
 
 	@Autowired
 	Environment env;
-	
+
 	public boolean intentarLoguearse(HttpSession session, String nombre, String password) throws SQLException {
 
 		Connection connection;
-		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
+		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),
+				env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 		PreparedStatement consulta = connection
 				.prepareStatement("SELECT * FROM usuarios WHERE nombre = ? AND contrasenia = ?;");
@@ -59,7 +60,8 @@ public class UsuariosDianaHelper {
 		if (codigo != null) {
 
 			Connection connection;
-			connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
+			connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),
+					env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 			PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE codigo = ?;");
 
@@ -68,8 +70,16 @@ public class UsuariosDianaHelper {
 			ResultSet resultado = consulta.executeQuery();
 
 			if (resultado.next()) {
-				Usuario logueado = new Usuario(resultado.getInt("id"), resultado.getString("nombre"), resultado.getString("email"), 
-						resultado.getString("contrasenia"), resultado.getBoolean("artista"), resultado.getString("localidad"), resultado.getString("influencias"), resultado.getString("genero"), resultado.getString("integrantes"), resultado.getString("descripcion"), resultado.getString("imagen"), resultado.getString("tipo") );
+				Usuario logueado = new Usuario(resultado.getInt("id"), resultado.getString("nombre"),
+						resultado.getString("email"), resultado.getString("contrasenia"),
+						resultado.getBoolean("artista"), resultado.getString("localidad"),
+						resultado.getString("influencias"), resultado.getString("genero"),
+						resultado.getString("integrantes"), resultado.getString("descripcion"),
+						resultado.getString("imagen"), resultado.getString("tipo"), resultado.getBoolean("admin"),
+						resultado.getString("facebook"), resultado.getString("instagram"),
+						resultado.getString("twitter"), resultado.getString("web"), resultado.getString("youtube"),
+						resultado.getString("link1"), resultado.getString("link2"), resultado.getString("link3"),
+						resultado.getString("link4"), resultado.getString("link5"));
 				return logueado;
 			} else {
 				return null;
@@ -87,7 +97,8 @@ public class UsuariosDianaHelper {
 		session.removeAttribute("codigo-autorizacion");
 
 		Connection connection;
-		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"), env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
+		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),
+				env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 		PreparedStatement consulta = connection.prepareStatement("UPDATE usuarios Set codigo = null WHERE codigo = ?;");
 
@@ -96,7 +107,7 @@ public class UsuariosDianaHelper {
 		connection.close();
 
 	}
-	
+
 	public void isLoggedIn(HttpSession session, Model template) throws SQLException {
 		Usuario logueado = this.usuarioLogueado(session);
 		if (logueado != null) {
@@ -105,19 +116,20 @@ public class UsuariosDianaHelper {
 			template.addAttribute("isLoggedIn", false);
 		}
 	}
-	
-	public void datosLogueado(HttpSession session, Model template) throws SQLException {
-			
-			Usuario logueado = this.usuarioLogueado(session);
-			
-			if (logueado != null) {
-			
+
+	public int datosLogueado(HttpSession session, Model template) throws SQLException {
+
+		Usuario logueado = this.usuarioLogueado(session);
+
+		if (logueado != null) {
+
 			String nombreUsuario = logueado.getNombre();
 			int idUsuario = logueado.getId();
-			
-			template.addAttribute("nombreUsuario" , nombreUsuario);
-			template.addAttribute("idUsuario" , idUsuario);
-			
-			}
+
+			template.addAttribute("nombreUsuario", nombreUsuario);
+			template.addAttribute("idUsuario", idUsuario);
+			return idUsuario;
 		}
+		return 0;
+	}
 }

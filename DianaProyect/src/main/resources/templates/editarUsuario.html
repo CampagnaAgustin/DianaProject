@@ -11,7 +11,7 @@
 <body>
 	<div class="container" layout:fragment="contenido">
 		<div class="tarjeta-usuario">
-			<form th:action="'/modificar/' + ${id}">
+			<form th:action="'/modificar/' + ${id}" method="post">
 				<label>Nombre: </label><input class="form-control" name="nombre" type="text" th:value="${nombre}"></input><br>
 				<label>Email: </label><input class="form-control" name="email" type="email" th:value="${email}"></input><br>
 				<label>Contraseña: </label><input class="form-control" name="password" type="text" th:value="${password}"></input><br>
@@ -25,12 +25,22 @@
 				<input id="foto" class="form-control" name="imagen" type="text" th:value="${imagen}"></input><br>
 				<label for="sel1">Elegir tipo:</label>
 					<select class="form-control" id="tipo">
-						<option>Musicales</option>
-						<option>Teatrales</option>
-						<option>Literarios</option>
-						<option>Graficos</option>
-						<option>Interdisciplinarios</option>
+						<option value="musicales">Musicales</option>
+						<option value="teatrales">Teatrales</option>
+						<option value="literarios">Literarios</option>
+						<option value="graficos">Graficos</option>
+						<option value="interdisciplinarios">Interdisciplinarios</option>
 					</select>
+				<label>Web propia: </label><input class="form-control" name="web" type="text" th:value="${web}"></input><br>
+				<label>Facebook: </label><input class="form-control" name="facebook" type="text" th:value="${facebook}"></input><br>
+				<label>Instagram: </label><input class="form-control" name="instagram" type="text" th:value="${instagram}"></input><br>
+				<label>Twitter: </label><input class="form-control" name="twitter" type="text" th:value="${twitter}"></input><br>
+				<label>Youtube: </label><input class="form-control" name="youtube" type="text" th:value="${youtube}"></input><br>
+				<label>Link 1: </label><input class="form-control" name="link1" type="text" th:value="${link1}"></input><br>
+				<label>Link 2: </label><input class="form-control" name="link2" type="text" th:value="${link2}"></input><br>
+				<label>Link 3: </label><input class="form-control" name="link3" type="text" th:value="${link3}"></input><br>
+				<label>Link 4: </label><input class="form-control" name="link4" type="text" th:value="${link4}"></input><br>
+				<label>Link 5: </label><input class="form-control" name="link5" type="text" th:value="${link5}"></input><br>
 				<input type="submit"></input>
 			</form>
 		</div>
