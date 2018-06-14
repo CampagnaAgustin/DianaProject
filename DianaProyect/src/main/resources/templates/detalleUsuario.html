@@ -1,37 +1,73 @@
 <!doctype html>
 <html layout:decorate="estructura">
-<head>
-<title th:text="${nombre}"></title>
-<meta charset="UTF-8"></meta>
-<link rel="stylesheet" type="text/css" href="/css/perfil.css"></link>
-<script src="//widget.cloudinary.com/global/all.js"
-	type="text/javascript"></script>
-<script
-	src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-<script src="/js/cloudinary.js"></script>
+
+	<head>
+		<title th:text="${nombre}"></title>
+		<meta charset="UTF-8"></meta>
+		<link rel="stylesheet" type="text/css" href="/css/perfil.css"></link>
+		<script src="//widget.cloudinary.com/global/all.js"
+			type="text/javascript"></script>
+		<script
+			src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+		<script src="/js/cloudinary.js"></script>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
 
 <body>
-	<div class="container" layout:fragment="contenido">
-		<div class="form-row text-center">
+	<div class="container fondoSecciones" layout:fragment="contenido">
+		<div class="form-row">
 			<div class="col-12">
-				<div class="card">
-					<h1 th:text="${nombre}"></h1>
-					<img class="mx-auto d-block" id="fotoPerfil" th:src="${imagen}"></img>
-					<label th:text="'Email: ' + ${email}"></label><br> <label
-						th:text="'localidad: ' + ${localidad}"></label><br> <label
-						th:text="'influencias: ' + ${influencias}"></label><br> <label
-						th:text="'Estilo: ' + ${genero}"></label><br> <label
-						th:text="'Integrantes: ' + ${integrantes}"></label><br> <label
-						th:text="'Descripcion: ' + ${descripcion}"></label><br> <label
-						th:if="${isLoggedIn && idLogueado == id}"><a
-						th:href="'/editar/' + ${idUsuario}">Editar</a></label>
-				</div>
+				<h1 th:text="${nombre}"></h1>
+				<label class="text-center" th:if="${isLoggedIn && idLogueado == id}"><a th:href="'/editar/' + ${idUsuario}">Editar</a></label>
 			</div>
 		</div>
-		<div class="container fondoSecciones">
-
-			<div th:if="${isLoggedIn && idLogueado == id}" class="row">
+		
+		<div class="row">
+			<div class="col-8 card">
+				<img class="mx-auto d-block" id="fotoPerfil" th:src="${imagen}"></img>
+			</div>
+			<div class="col-4 card">
+				<h6 th:if="${genero != null}">Estilo:</h6>
+				<label th:if="${genero != null}" th:text="${genero}"></label><br>
+				<h6 th:if="${localidad != null}">Localidad:</h6>
+				<label th:if="${localidad != null}" th:text="${localidad}"></label><br>
+				<h6 th:if="${influencias != null}">Influencias:</h6>
+				<label th:if="${influencias != null}" th:text="${influencias}"></label><br>
+				<h6 th:if="${integrantes != null}">Integrantes:</h6>
+				<label th:if="${integrantes != null}" th:text="${integrantes}"></label><br>
+				<H6>Contacto:</H6>
+				<label th:text="'Email: ' + ${email}"></label><br>
+				<h5 th:if="${descripcion != null}">Descripcion:</h5>
+				<label th:if="${descripcion != null}" th:text="${descripcion}"></label><br>
+					<div class="form-row text-center">
+						<a th:href="${facebook}"><div class="col-2">
+							<i class="fab fa-facebook"></i>
+						</div></a>
+						<a th:href="${instagram}"><div class="col-2">
+							<i class="fab fa-instagram"></i>
+						</div></a>
+						<a th:href="${twitter}"><div class="col-2">
+							<i class="fab fa-twitter"></i>
+						</div></a>
+						<a th:href="${youtube}"><div class="col-2">
+							<i class="fab fa-youtube"></i>
+						</div></a>
+						<a th:href="${web}"><div class="col-2">
+							<i class="fab fa-internet-explorer"></i>
+						</div></a>
+					</div>
+				<div><a style='cursor: pointer;' onClick="muestra_oculta('contenido')" title="" class="boton_mostrar">Otros Links</a></div>
+					<div id="contenido">
+						<label th:if="${link1 != null}"><a th:href="${link1}">Link 1</a></label>
+						<label th:if="${link2 != null}"><a th:href="${link2}">Link 2</a></label>
+						<label th:if="${link3 != null}"><a th:href="${link3}">Link 3</a></label>
+						<label th:if="${link4 != null}"><a th:href="${link4}">Link 4</a></label>
+						<label th:if="${link5 != null}"><a th:href="${link5}">Link 5</a></label>
+					</div>
+			</div>
+		</div>
+		
+		<div th:if="${isLoggedIn && idLogueado == id}" class="row">
 
 				<!-- Blog Entries Column -->
 				<div class="col-md-12">
@@ -42,12 +78,13 @@
 					<div class="card mb-4">
 						<div class="card-body">
 							<form action="/insertarPost" method="post">
-								<input name="titulo" type="text" placeholder="Titulo"></input><br>
-								<textarea class="form-control" name="texto" rows="5" type="text" placeholder="Contenido"></textarea>
+								<input name="titulo" type="text" placeholder="Titulo"></input><br><br>
+								<textarea class="form-control" name="texto" rows="5" type="text"
+									placeholder="Contenido"></textarea>
 								<br> <a href="#" id="upload_widget_opener">Subir foto</a><br>
 								<input id="foto" class="form-control" name="imagen_post"
-									type="text" placeholder="Link de la foto"></input><br> <input type="submit"
-									class="btn btn-primary"></input>
+									type="text" placeholder="Link de la foto"></input><br> <input
+									type="submit" class="btn btn-primary"></input>
 							</form>
 						</div>
 						<div class="card-footer text-muted"></div>
@@ -65,7 +102,7 @@
 					<!-- Blog Post -->
 					<div th:each="Post:${listadoPosteos}">
 						<div class="card mb-4">
-							<img class="card-img-top" alt="Card image cap"
+							<img class="card-img-top fotoPost" alt="Card image cap"
 								th:src="${Post.imagenPost}"></img>
 							<div class="card-body">
 								<h2 class="card-title" th:text="${Post.titulo}">Post Title</h2>
@@ -82,7 +119,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 
 </html>

@@ -194,7 +194,7 @@ public class UsuariosDianaController {
 		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),
 				env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
-		PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE id = ?;");
+		PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE id = ? ORDER BY id DESC;");
 
 		consulta.setInt(1, id);
 
@@ -214,6 +214,16 @@ public class UsuariosDianaController {
 			String integrantes = resultado.getString("integrantes");
 			String imagen = resultado.getString("imagen");
 			String tipo = resultado.getString("tipo");
+			String facebook = resultado.getString("facebook");
+			String instagram = resultado.getString("instagram");
+			String twitter = resultado.getString("twitter");
+			String web = resultado.getString("web");
+			String youtube = resultado.getString("youtube");
+			String link1 = resultado.getString("link1");
+			String link2 = resultado.getString("link2");
+			String link3 = resultado.getString("link3");
+			String link4 = resultado.getString("link4");
+			String link5 = resultado.getString("link5");
 
 			template.addAttribute("nombre", nombre);
 			template.addAttribute("email", email);
@@ -226,6 +236,17 @@ public class UsuariosDianaController {
 			template.addAttribute("integrantes", integrantes);
 			template.addAttribute("imagen", imagen);
 			template.addAttribute("tipo", tipo);
+			template.addAttribute("facebook", facebook);
+			template.addAttribute("instagram", instagram);
+			template.addAttribute("twitter", twitter);
+			template.addAttribute("web", web);
+			template.addAttribute("youtube", youtube);
+			template.addAttribute("link1", link1);
+			template.addAttribute("link2", link2);
+			template.addAttribute("link3", link3);
+			template.addAttribute("link4", link4);
+			template.addAttribute("link5", link5);
+			
 		}
 
 		PreparedStatement consulta2 = connection.prepareStatement("SELECT * FROM posts WHERE id_usuario = ?;");
@@ -382,7 +403,7 @@ public class UsuariosDianaController {
 		connection = DriverManager.getConnection(env.getProperty("spring.datasource.url"),
 				env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
-		PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE artista = true;");
+		PreparedStatement consulta = connection.prepareStatement("SELECT * FROM usuarios WHERE artista = true ORDER BY nombre ASC;");
 
 		ResultSet resultado = consulta.executeQuery();
 
@@ -436,7 +457,7 @@ public class UsuariosDianaController {
 				env.getProperty("spring.datasource.username"), env.getProperty("spring.datasource.password"));
 
 		PreparedStatement consulta = connection
-				.prepareStatement("SELECT * FROM usuarios WHERE artista = true AND tipo = ?;");
+				.prepareStatement("SELECT * FROM usuarios WHERE artista = true AND tipo = ? ORDER BY nombre ASC;");
 
 		consulta.setString(1, tipo);
 

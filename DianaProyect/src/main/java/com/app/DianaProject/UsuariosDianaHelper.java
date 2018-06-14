@@ -132,4 +132,19 @@ public class UsuariosDianaHelper {
 		}
 		return 0;
 	}
+	
+	public boolean isAdmin(HttpSession session, Model template) throws SQLException {
+
+		Usuario logueado = this.usuarioLogueado(session);
+
+		if (logueado != null) {
+			
+			boolean admin = logueado.isAdmin();
+			
+			template.addAttribute("admin", admin);
+			
+			return admin;
+		}
+		return false;
+	}
 }

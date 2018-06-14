@@ -10,14 +10,15 @@
 		<div class="fondoSecciones container" layout:fragment="contenido">
 			<div class="form-row text-center">
 				<form action="/procesarBusqueda">
-					<input type="text" name="palabraBuscada"></input>
+					<input type="text" name="palabraBuscada" placeholder="Busqueda por nombre"></input>
 					<input type="submit" value="Buscar"></input>
 				</form>
 			</div>
 			
 			<div class="row text-center">
         		<div class="col-lg-12">
-          			<h2 th:text="'Artistas ' + ${tipo}" class="my-4">Our Team</h2>
+          			<h2 th:if="${tipo != null}" th:text="'Artistas ' + ${tipo}" class="my-4"></h2>
+          			<h2 th:if="${tipo == null}" class="my-4">Todos los artistas</h2>
        			</div>
        		</div>
 			<div class="row">
