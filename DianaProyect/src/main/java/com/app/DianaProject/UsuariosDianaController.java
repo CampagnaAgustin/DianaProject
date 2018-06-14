@@ -103,18 +103,6 @@ public class UsuariosDianaController {
 
 		consulta.executeUpdate();
 
-		/*
-		 * Email email1 = EmailBuilder.startingBlank() .from("Winky",
-		 * "campagna.agustin@gmail.com") .to("Myself", "campagna.agustin@gmail.com")
-		 * .withSubject("Artista nuevo")
-		 * .withPlainText("Un artista nuevo se ha registrado en la pagina")
-		 * .buildEmail();
-		 * 
-		 * MailerBuilder .withSMTPServer("smtp.sendgrid.net", 587, "apikey",
-		 * "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")
-		 * .buildMailer() .sendMail(email1);
-		 */
-
 		connection.close();
 		return "redirect:/login";
 	}
@@ -249,7 +237,7 @@ public class UsuariosDianaController {
 			
 		}
 
-		PreparedStatement consulta2 = connection.prepareStatement("SELECT * FROM posts WHERE id_usuario = ?;");
+		PreparedStatement consulta2 = connection.prepareStatement("SELECT * FROM posts WHERE id_usuario = ? ORDER BY id desc;");
 
 		consulta2.setInt(1, id);
 
